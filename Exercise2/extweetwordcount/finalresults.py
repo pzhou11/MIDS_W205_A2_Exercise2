@@ -14,9 +14,13 @@ if len(sys.argv) > 2:
 
 # output count for 1 word
 if len(sys.argv) == 2:
-	word_input = sys.argv[1]
+        word_input = sys.argv[1]
         cur.execute("SELECT word, count FROM tweetwordcount WHERE word = %s;", (word_input,))
-	print "Total number of occurrences of", word_input, ":", cur.fetchone()[1]
+	word_count = cur.fetchone()
+	if word_count == None:
+		print "Total number of occurrences of", word_input, ":0"
+        else:
+		print "Total number of occurrences of", word_input, ":", word_count[1]
         conn.commit()
         exit(0)
 
