@@ -30,6 +30,10 @@ except ValueError:
    print("The second value you've entered is not an integer. Please enter an integer")
    exit(1)
 
+if first > second:
+   print "The first value you've entered is greater than the second value. Please re-enter with the first value being the smaller number"
+   exit(1)
+
 conn = psycopg2.connect(database = "tcount", user = "postgres", password = "pass", host = "localhost", port = "5432")
 conn.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
 cur = conn.cursor()
